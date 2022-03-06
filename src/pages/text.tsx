@@ -13,18 +13,27 @@ import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import Center from '../components/Center';
+import Label from '../components/Label';
+import ColorPicker from '../components/Picker';
 import config from '../config.json';
 import renderGIF from '../helpers/renderGIF';
 
 const TextPage: NextPage = () => {
 	// Hooks
 	const router = useRouter();
+
 	const { state: topText, bindings: topTextBindings } = useInput('');
 	const { state: bottomText, bindings: bottomTextBindings } = useInput('');
+	const {
+		state: color,
+		bindings: colorBindings,
+		setState: setColor,
+	} = useInput('#ffffff');
+
 	const [rendering, setRendering] = useState(false);
 	const [output, setOutput] = useState<Buffer>();
 	const [scale, setScale] = useState(1);
-	const [font, setFont] = useState('Inter');
+	const [font, setFont] = useState('Arial');
 
 	// Params
 	const character = router.query.character as string;
@@ -64,6 +73,7 @@ const TextPage: NextPage = () => {
 					top: topText,
 					bottom: bottomText,
 					font,
+					color,
 				},
 				scale,
 			})
@@ -102,15 +112,7 @@ const TextPage: NextPage = () => {
 					</Input>
 				</Grid>
 				<Grid xs={12} direction='column'>
-					<Text
-						small
-						mb='10px'
-						style={{
-							color: '#444',
-						}}
-					>
-						Scale
-					</Text>
+					<Label>Scale</Label>
 					<Slider
 						max={10}
 						value={scale}
@@ -120,25 +122,11 @@ const TextPage: NextPage = () => {
 					/>
 				</Grid>
 				<Grid xs={12} direction='column'>
-					<Text
-						small
-						mb='10px'
-						style={{
-							color: '#444',
-						}}
-					>
-						Font
-					</Text>
+					<Label>Font</Label>
 					<Select
 						initialValue={font}
 						onChange={(val) => setFont(val as string)}
 					>
-						<Select.Option
-							value='Inter'
-							style={{ fontFamily: 'Inter' }}
-						>
-							Inter
-						</Select.Option>
 						<Select.Option
 							value='Impact'
 							style={{ fontFamily: 'Impact' }}
@@ -157,9 +145,23 @@ const TextPage: NextPage = () => {
 						>
 							Verdana
 						</Select.Option>
+						<Select.Option
+							value='Inter'
+							style={{ fontFamily: 'Inter' }}
+						>
+							Inter
+						</Select.Option>
 					</Select>
 				</Grid>
-				<Grid xs={12} direction='column' />
+				<Grid xs={12} direction='column'>
+					<Label>Text Color</Label>
+					<ColorPicker
+						value={color}
+						bindings={colorBindings}
+						onChange={setColor}
+					/>
+				</Grid>
+				<Grid xs={12} direction='column'></Grid>
 				<Grid xs={24} direction='column'>
 					<Center>
 						<Button
@@ -191,7 +193,7 @@ const TextPage: NextPage = () => {
 									'base64'
 								)}`}
 							>
-								<Button >Download Gif</Button>
+								<Button>Download Gif</Button>
 							</a>
 						</Grid>
 					</>

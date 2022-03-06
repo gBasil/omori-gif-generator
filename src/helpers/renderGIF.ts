@@ -9,20 +9,21 @@ type Config = {
 		top: string;
 		bottom: string;
 		font: string;
+		color: string;
 	};
 	scale: number;
 };
 
-const renderGIF = (config: Config) =>
+const renderGIF = (props: Config) =>
 	new Promise<Buffer>(async (resolve, reject) => {
-		const size = 100 * config.scale;
+		const size = 100 * props.scale;
 
 		// Images
 		const backgroundImage = new Image();
 		const characterSpritesheet = new Image();
 
-		backgroundImage.src = `/backgrounds/${config.background}.png`;
-		characterSpritesheet.src = `/spritesheets/characters/${config.character}.png`;
+		backgroundImage.src = `/backgrounds/${props.background}.png`;
+		characterSpritesheet.src = `/spritesheets/characters/${props.character}.png`;
 
 		await backgroundImage.decode();
 		await characterSpritesheet.decode();
@@ -41,9 +42,9 @@ const renderGIF = (config: Config) =>
 		canvas.width = size;
 		canvas.height = size;
 
-		ctx.fillStyle = 'white';
+		ctx.fillStyle = props.text.color;
 		ctx.textAlign = 'center';
-		ctx.font = `bold ${10 * config.scale}px ${config.text.font}`;
+		ctx.font = `bold ${10 * props.scale}px ${props.text.font}`;
 
 		// Render all three frames
 		for (let i = 0; i < 3; i++) {
@@ -55,7 +56,7 @@ const renderGIF = (config: Config) =>
 			ctx.drawImage(
 				characterSpritesheet,
 				i * 106,
-				config.emotionIndex * 106,
+				props.emotionIndex * 106,
 				106,
 				106,
 				0,
@@ -70,12 +71,12 @@ const renderGIF = (config: Config) =>
 
 			const topText = canvasTextWrap(
 				ctx,
-				config.text.top,
-				size - 5 * 2 * config.scale
+				props.text.top,
+				size - 5 * 2 * props.scale
 			);
 
 			topText.forEach((text, index) =>
-				ctx.fillText(text, size / 2, 10 * config.scale * index + 3 * config.scale)
+				ctx.fillText(text, size / 2, 10 * props.scale * index + 3 * props.scale)
 			);
 
 			// Bottom line
@@ -83,12 +84,12 @@ const renderGIF = (config: Config) =>
 
 			const bottomText = canvasTextWrap(
 				ctx,
-				config.text.bottom,
-				size - 5 * 2 * config.scale
+				props.text.bottom,
+				size - 5 * 2 * props.scale
 			).reverse();
 
 			bottomText.forEach((text, index) =>
-				ctx.fillText(text, size / 2, size - 10 * config.scale * index - 3 * config.scale)
+				ctx.fillText(text, size / 2, size - 10 * props.scale * index - 3 * props.scale)
 			);
 
 			// Add frame to gif

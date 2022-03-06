@@ -12,9 +12,12 @@
 	"dependencies": {
 		"@geist-ui/core": "^2.3.5",
 		"gifencoder": "^2.0.1",
+		"lucide-react": "^0.17.7",
 		"next": "12.1.0",
 		"react": "17.0.2",
+		"react-colorful": "^5.5.1",
 		"react-dom": "17.0.2",
+		"react-popper": "^2.2.5",
 		"sharp": "^0.30.2"
 	},
 	"devDependencies": {

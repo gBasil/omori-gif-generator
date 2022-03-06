@@ -1,0 +1,139 @@
+{
+	"characters": [
+		{
+			"name": "Kel",
+			"key": "kel",
+			"emotionKey": "default"
+		},
+		{
+			"name": "Aubrey",
+			"key": "aubrey",
+			"emotionKey": "default"
+		},
+		{
+			"name": "Hero",
+			"key": "hero",
+			"emotionKey": "default"
+		},
+		{
+			"name": "Sunny",
+			"key": "sunny",
+			"emotionKey": "sunny"
+		},
+		{
+			"name": "Kel Headspace",
+			"key": "kel-h",
+			"emotionKey": "default"
+		},
+		{
+			"name": "Aubrey Headspace",
+			"key": "aubrey-h",
+			"emotionKey": "default"
+		},
+		{
+			"name": "Hero Headspace",
+			"key": "hero-h",
+			"emotionKey": "default"
+		},
+		{
+			"name": "Omori",
+			"key": "omori",
+			"emotionKey": "omori"
+		}
+	],
+	"emotions": {
+		"default": [
+			"neutral",
+			"happy",
+			"ecstatic",
+			"afraid",
+			"sad",
+			"depressed",
+			"angry",
+			"enraged",
+			"defeated",
+			"injured",
+			"victory"
+		],
+		"sunny": [
+			"neutral",
+			"calm",
+			null,
+			"afraid",
+			"sad",
+			null,
+			"angry",
+			null,
+			null,
+			"injured",
+			null,
+			null,
+			null,
+			null,
+			"stressed-out"
+		],
+		"omori": [
+			"neutral",
+			"happy",
+			"ecstatic",
+			"did-not-succumb",
+			"sad",
+			"depressed",
+			"angry",
+			"enraged",
+			"defeated",
+			"injured",
+			"victory",
+			"manic",
+			"miserable",
+			"furious",
+			null
+		]
+	},
+	"backgrounds": [
+		"neutral",
+		"happy",
+		"ecstatic",
+		"manic",
+		"afraid",
+		"sad",
+		"depressed",
+		"miserable",
+		"defeat",
+		"angry",
+		"enraged",
+		"furious"
+	],
+	"backgroundsUnordered": [
+		"neutral",
+		"defeat",
+		"happy",
+		"ecstatic",
+		"manic",
+		"sad",
+		"depressed",
+		"miserable",
+		"angry",
+		"enraged",
+		"furious",
+		"afraid"
+	],
+	"quotes": [
+		"When I flex, I feel my best!",
+		"Omori did not succumb.",
+		"Ah yes, some questionable gelatin.",
+		"I fucking love air conditioning.",
+		"Eternal banana.",
+		"Waiting for something to happen?"
+	],
+	"textPlaceholders": [
+		["you're such a", "sussy slushie"],
+		["I asked for no", "no pickles"],
+		["I may be dumb", "yeah"],
+		["let's go to", "to walmart"],
+		["all I want", "all I want is a burger and fry"],
+		["I smell mice", "many mice"],
+		["omg!!!!!!!!!", "you!!!!!!!!"],
+		["silly mari thats not", "not how you use a jump rope"]
+	]
+}

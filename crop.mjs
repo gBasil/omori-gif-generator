@@ -48,25 +48,47 @@ const lineNames = {
 		'miserable',
 		'furious',
 		null,
+		'afraid',
 	],
+	basil: [
+		'neutral',
+		'happy',
+		'ecstatic',
+		'afraid',
+		'sad',
+		'depressed',
+		'angry',
+		'enraged',
+		'defeated',
+		'injured',
+		'victory',
+		'manic',
+		'miserable',
+		'furious',
+	]
 };
 
-readdirSync('spritesheets/characters').forEach(async (file) => {
-	const image = sharp(`spritesheets/characters/${file}`);
+readdirSync('./public/spritesheets/characters').forEach(async (file) => {
+	const image = sharp(`./public/spritesheets/characters/${file}`);
 	const metadata = await image.metadata();
 	const lines =
 		file === 'sunny.png'
 			? {
-					count: 15,
+					count: lineNames.sunny.length,
 					names: lineNames.sunny,
 			  }
 			: file === 'omori.png'
 			? {
-					count: 15,
+					count: lineNames.omori.length,
 					names: lineNames.omori,
 			  }
+			: file == "basil.png"
+			? {
+					count: lineNames.basil.length,
+					names: lineNames.basil,
+			  }
 			: {
-					count: 11,
+					count: lineNames.default.length,
 					names: lineNames.default,
 			  };
 
@@ -74,11 +96,11 @@ readdirSync('spritesheets/characters').forEach(async (file) => {
 	for (let i = 0; i < lines.count; i++) {
 		const frame = image.extract({
 			left: 0,
-			top: (metadata.height / lines.count) * i,
-			width: metadata.width / 3,
-			height: metadata.height / lines.count,
+			top: Math.floor((metadata.height / lines.count) * i),
+			width: Math.floor(metadata.width / 3),
+			height: Math.floor(metadata.height / lines.count),
 		});
 		if (lines.names[i])
-			frame.toFile(`out/${file.split('.')[0]}-${lines.names[i]}.png`);
+			frame.toFile(`./out/${file.split('.')[0]}-${lines.names[i]}.png`);
 	}
 });

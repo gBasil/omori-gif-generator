@@ -82,7 +82,7 @@ readdirSync('./public/spritesheets/characters').forEach(async (file) => {
 					count: lineNames.omori.length,
 					names: lineNames.omori,
 			  }
-			: file == "basil.png"
+			: file == 'basil.png'
 			? {
 					count: lineNames.basil.length,
 					names: lineNames.basil,

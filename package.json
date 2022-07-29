@@ -11,7 +11,7 @@
 	},
 	"dependencies": {
 		"@geist-ui/core": "^2.3.5",
-		"gifencoder": "^2.0.1",
+		"gifencoder": "^1.1.0",
 		"lucide-react": "^0.17.7",
 		"next": "^12.1.0",
 		"react": "17.0.2",

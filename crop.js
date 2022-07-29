@@ -101,6 +101,6 @@ readdirSync('./public/spritesheets/characters').forEach(async (file) => {
 			height: Math.floor(metadata.height / lines.count),
 		});
 		if (lines.names[i])
-			frame.toFile(`./out/${file.split('.')[0]}-${lines.names[i]}.png`);
+			frame.toFile(`./public/characters/${file.split('.')[0]}-${lines.names[i]}.png`);
 	}
 });

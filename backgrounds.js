@@ -1,6 +1,6 @@
 import sharp from 'sharp';
 
-const image = sharp('spritesheets/backgrounds.png');
+const image = sharp('./public/spritesheets/backgrounds.png');
 const metadata = await image.metadata();
 
 const size = metadata.width / 4;
@@ -29,5 +29,5 @@ for (let y = 0; y < 3; y++)
 				width: size,
 				height: size,
 			})
-			.toFile(`out/${names[y * 4 + x]}.png`);
+			.toFile(`./public/backgrounds/${names[y * 4 + x]}.png`);
 	}

@@ -12,7 +12,7 @@ const Home: NextPage = () => (
 			<Text h1>Changelog</Text>
 		</Display>
 
-		<Text h3>v1.1</Text>
+		<Text h3>v1.1.0</Text>
 		<Text small>March 6, 2022</Text>
 		<Text>Thank you <Link color href='https://www.youtube.com/channel/UCAdWX1tWhzd1xbvzMMcq8TA'>Xenonaut</Link> and Yeastus for the suggestions and feedback :)</Text>
 		<ul>
@@ -24,7 +24,7 @@ const Home: NextPage = () => (
 
 		<Spacer h={2} />
 
-		<Text h3>v1.0</Text>
+		<Text h3>v1.0.0</Text>
 		<Text small>March 5, 2022</Text>
 		<Text>🎉 Initial release, woo!</Text>
 	</Page>

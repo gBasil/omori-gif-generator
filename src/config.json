@@ -39,6 +39,11 @@
 			"name": "Omori",
 			"key": "omori",
 			"emotionKey": "omori"
+		},
+		{
+			"name": "Basil",
+			"key": "basil",
+			"emotionKey": "basil"
 		}
 	],
 	"emotions": {
@@ -87,7 +92,24 @@
 			"manic",
 			"miserable",
 			"furious",
-			null
+			null,
+			"afraid"
+		],
+		"basil": [
+			"neutral",
+			"happy",
+			"ecstatic",
+			"afraid",
+			"sad",
+			"depressed",
+			"angry",
+			"enraged",
+			"defeated",
+			"injured",
+			"victory",
+			"manic",
+			"miserable",
+			"furious"
 		]
 	},
 	"backgrounds": [

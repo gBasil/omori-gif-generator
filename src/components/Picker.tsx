@@ -30,7 +30,7 @@ const ColorPicker = (props: ColorPickerProps) => {
 	useEffect(() => {
 		if (forceUpdate) forceUpdate();
 		if (update) update();
-	}, [showColorPopover]);
+	}, [showColorPopover, update, forceUpdate]);
 
 	return (
 		<Input

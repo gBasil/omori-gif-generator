@@ -26,8 +26,6 @@ const Meta = () => {
 				content='https://omori.gbasil.dev/banner.png'
 			/>
 			<meta name='theme-color' content='#ffffff' />
-
-			<link rel='stylesheet' href='/global.css' />
 		</Head>
 	);
 };

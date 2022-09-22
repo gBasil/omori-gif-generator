@@ -85,10 +85,11 @@ const renderGIF = (props: Config) =>
 				size - 5 * 2 * props.scale
 			);
 
+			// const drawText = strokedText ? ctx.strokeText : ctx.fillText;
 			topText.forEach((text, index) => {
-				if (strokedText) 
-					ctx.strokeText(text, size / 2, 10 * props.scale * index + 3 * props.scale);
-				ctx.fillText(text, size / 2, 10 * props.scale * index + 3 * props.scale)
+				const [x, y] = [size / 2, 10 * props.scale * props.text.fontScale * index + 3 * props.scale * props.text.fontScale];
+				if (strokedText) ctx.strokeText(text, x, y);
+				ctx.fillText(text, x, y);
 			});
 
 			// Bottom line
@@ -101,9 +102,9 @@ const renderGIF = (props: Config) =>
 			).reverse();
 
 			bottomText.forEach((text, index) => {
-				if (strokedText) 
-					ctx.strokeText(text, size / 2, size - 10 * props.scale * index - 3 * props.scale)
-				ctx.fillText(text, size / 2, size - 10 * props.scale * index - 3 * props.scale)
+				const [x, y] = [size / 2, size - 10 * props.scale * props.text.fontScale * index - 3 * props.scale * props.text.fontScale];
+				if (strokedText) ctx.strokeText(text, x, y);
+				ctx.fillText(text, x, y);
 			});
 
 			// Add frame to gif

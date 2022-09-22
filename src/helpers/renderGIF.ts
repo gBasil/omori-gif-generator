@@ -9,14 +9,19 @@ type Config = {
 		top: string;
 		bottom: string;
 		font: string;
+		fontScale: number;
 		color: string;
+		strokeColor: string;
 	};
 	scale: number;
+	strokeWidth: number;
 };
 
 const renderGIF = (props: Config) =>
 	new Promise<Buffer>(async (resolve, reject) => {
 		const size = 100 * props.scale;
+
+		let strokedText =	props.strokeWidth > 0; 
 
 		// Images
 		const backgroundImage = new Image();
@@ -43,8 +48,13 @@ const renderGIF = (props: Config) =>
 		canvas.height = size;
 
 		ctx.fillStyle = props.text.color;
+		if (strokedText) {
+			ctx.strokeStyle = props.text.strokeColor;
+			ctx.lineWidth = props.strokeWidth;
+		}
 		ctx.textAlign = 'center';
-		ctx.font = `bold ${10 * props.scale}px ${props.text.font}`;
+
+		ctx.font = `bold ${10 * props.scale * props.text.fontScale}px ${props.text.font}`;
 
 		// Render all three frames
 		for (let i = 0; i < 3; i++) {
@@ -75,9 +85,12 @@ const renderGIF = (props: Config) =>
 				size - 5 * 2 * props.scale
 			);
 
-			topText.forEach((text, index) =>
-				ctx.fillText(text, size / 2, 10 * props.scale * index + 3 * props.scale)
-			);
+			// const drawText = strokedText ? ctx.strokeText : ctx.fillText;
+			topText.forEach((text, index) => {
+				const [x, y] = [size / 2, 10 * props.scale * props.text.fontScale * index + 3 * props.scale * props.text.fontScale];
+				if (strokedText) ctx.strokeText(text, x, y);
+				ctx.fillText(text, x, y);
+			});
 
 			// Bottom line
 			ctx.textBaseline = 'bottom';
@@ -88,9 +101,11 @@ const renderGIF = (props: Config) =>
 				size - 5 * 2 * props.scale
 			).reverse();
 
-			bottomText.forEach((text, index) =>
-				ctx.fillText(text, size / 2, size - 10 * props.scale * index - 3 * props.scale)
-			);
+			bottomText.forEach((text, index) => {
+				const [x, y] = [size / 2, size - 10 * props.scale * props.text.fontScale * index - 3 * props.scale * props.text.fontScale];
+				if (strokedText) ctx.strokeText(text, x, y);
+				ctx.fillText(text, x, y);
+			});
 
 			// Add frame to gif
 			encoder.addFrame(ctx);

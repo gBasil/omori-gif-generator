@@ -8,7 +8,9 @@ import {
 	useInput,
 	Slider,
 	Select,
+	Tooltip,
 } from '@geist-ui/core';
+import { Info } from 'lucide-react';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
@@ -29,11 +31,18 @@ const TextPage: NextPage = () => {
 		bindings: colorBindings,
 		setState: setColor,
 	} = useInput('#ffffff');
+	const {
+		state: strokeColor,
+		bindings: strokeColorBindings,
+		setState: setStrokeColor,
+	} = useInput('#ffffff');
 
 	const [rendering, setRendering] = useState(false);
 	const [output, setOutput] = useState<Buffer>();
 	const [scale, setScale] = useState(1);
-	const [font, setFont] = useState('Arial');
+	const [strokeWidth, setStrokeWidth] = useState(0);
+	const [font, setFont] = useState('Omori');
+	const [fontScale, setFontScale] = useState(1);
 
 	// Params
 	const character = router.query.character as string;
@@ -60,8 +69,7 @@ const TextPage: NextPage = () => {
 		const emotionIndex: number =
 			// @ts-ignore
 			config.emotions[
-				config.characters.find((char) => char.key === character)!
-					.emotionKey
+				config.characters.find((char) => char.key === character)!.emotionKey
 			].indexOf(emotion);
 
 		setOutput(
@@ -73,9 +81,12 @@ const TextPage: NextPage = () => {
 					top: topText,
 					bottom: bottomText,
 					font,
+					fontScale,
 					color,
+					strokeColor,
 				},
 				scale,
+				strokeWidth,
 			})
 		);
 
@@ -127,28 +138,19 @@ const TextPage: NextPage = () => {
 						initialValue={font}
 						onChange={(val) => setFont(val as string)}
 					>
-						<Select.Option
-							value='Impact'
-							style={{ fontFamily: 'Impact' }}
-						>
+						<Select.Option value='Omori' style={{ fontFamily: 'Omori' }}>
+							Omori
+						</Select.Option>
+						<Select.Option value='Impact' style={{ fontFamily: 'Impact' }}>
 							Impact
 						</Select.Option>
-						<Select.Option
-							value='Arial'
-							style={{ fontFamily: 'Arial' }}
-						>
+						<Select.Option value='Arial' style={{ fontFamily: 'Arial' }}>
 							Arial
 						</Select.Option>
-						<Select.Option
-							value='Verdana'
-							style={{ fontFamily: 'Verdana' }}
-						>
+						<Select.Option value='Verdana' style={{ fontFamily: 'Verdana' }}>
 							Verdana
 						</Select.Option>
-						<Select.Option
-							value='Inter'
-							style={{ fontFamily: 'Inter' }}
-						>
+						<Select.Option value='Inter' style={{ fontFamily: 'Inter' }}>
 							Inter
 						</Select.Option>
 					</Select>
@@ -161,14 +163,45 @@ const TextPage: NextPage = () => {
 						onChange={setColor}
 					/>
 				</Grid>
+				<Grid xs={12} direction='column'>
+					<Label>Stroke Color</Label>
+					<ColorPicker
+						value={strokeColor}
+						bindings={strokeColorBindings}
+						onChange={setStrokeColor}
+					/>
+				</Grid>
+				<Grid xs={12} direction='column'>
+					<Label>
+						Stroke Width
+						<Tooltip text='Set to 0 for no stroke.' style={{
+							height: '16px'
+						}}>
+							<Info size={16} />
+						</Tooltip>
+					</Label>
+					<Slider
+						max={10}
+						value={strokeWidth}
+						min={0}
+						step={1}
+						onChange={setStrokeWidth}
+					/>
+				</Grid>
+				<Grid xs={12} direction='column'>
+					<Label>Font Scale</Label>
+					<Slider
+						max={4}
+						value={fontScale}
+						min={0.5}
+						step={0.5}
+						onChange={setFontScale}
+					/>
+				</Grid>
 				<Grid xs={12} direction='column'></Grid>
 				<Grid xs={24} direction='column'>
 					<Center>
-						<Button
-							type='secondary'
-							loading={rendering}
-							onClick={render}
-						>
+						<Button type='secondary' loading={rendering} onClick={render}>
 							Render!
 						</Button>
 					</Center>
@@ -180,18 +213,14 @@ const TextPage: NextPage = () => {
 								style={{
 									borderRadius: '6px',
 								}}
-								src={`data:image/gif;base64,${output.toString(
-									'base64'
-								)}`}
+								src={`data:image/gif;base64,${output.toString('base64')}`}
 								alt='Rendered output'
 							/>
 						</Grid>
 						<Grid xs={24} justify='center'>
 							<a
 								download='omori.gif'
-								href={`data:image/gif;base64,${output.toString(
-									'base64'
-								)}`}
+								href={`data:image/gif;base64,${output.toString('base64')}`}
 							>
 								<Button>Download Gif</Button>
 							</a>

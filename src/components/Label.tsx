@@ -1,7 +1,7 @@
 import { Text } from '@geist-ui/core';
 
 type LabelProps = {
-	children: string;
+	children: string | (string | JSX.Element)[];
 };
 
 const Label = (props: LabelProps) => {
@@ -11,6 +11,9 @@ const Label = (props: LabelProps) => {
 			mb='10px'
 			style={{
 				color: '#444',
+				display: 'flex',
+				gap: '8px',
+				alignItems: 'center'
 			}}
 		>
 			{props.children}

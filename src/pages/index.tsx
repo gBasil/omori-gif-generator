@@ -24,7 +24,7 @@ const Home: NextPage = () => {
 				gifs, like those you see on Tenor. There isn&apos;t much to it.
 				<br />
 				<br />
-				Want to see the changes? Check the <Link color href='/changelog'>Changelog</Link>
+				Want to see the changes? Check the <Link color href='/changelog'>Changelog</Link>.
 			</Text>
 
 			<Center>

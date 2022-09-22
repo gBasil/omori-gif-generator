@@ -35,7 +35,11 @@ const ColorPicker = (props: ColorPickerProps) => {
 	return (
 		<Input
 			icon={
-				<div>
+				<div
+					style={{
+						zIndex: 101,
+					}}
+				>
 					<Pipette
 						style={{
 							zIndex: 1111,

@@ -12,9 +12,19 @@ const Home: NextPage = () => (
 			<Text h1>Changelog</Text>
 		</Display>
 
+		<Text h3>v1.3.0</Text>
+		<Text small>September 22, 2022</Text>
+		<Text>Thank you <Link color href='https://github.com/morrig-n'>morrig-n</Link> for the pull request! :D</Text>
+		<ul>
+			<li>✨ Added font scaling and text outline customization - morrig-n</li>
+			<li>✨ Added Omori font - morrig-n</li>
+			<li>👥 Added links to the GitHub profiles of contributors</li>
+		</ul>
+
+
 		<Text h3>v1.2.0</Text>
 		<Text small>July 29, 2022</Text>
-		<Text>Thank you placuszek15 for the pull request! :D</Text>
+		<Text>Thank you <Link color href='https://github.com/placuszek15'>placuszek15</Link> for the pull request! :D</Text>
 		<ul>
 			<li>✨ Added Basil expressions and Omori afraid expression - placuszek15</li>
 			<li>💬 Applied proper semantic versioning</li>

@@ -10,13 +10,17 @@ type Config = {
 		bottom: string;
 		font: string;
 		color: string;
+		strokeColor: string;
 	};
 	scale: number;
+	strokeWidth: number;
 };
 
 const renderGIF = (props: Config) =>
 	new Promise<Buffer>(async (resolve, reject) => {
 		const size = 100 * props.scale;
+
+		let strokedText =	props.strokeWidth > 0; 
 
 		// Images
 		const backgroundImage = new Image();
@@ -43,6 +47,10 @@ const renderGIF = (props: Config) =>
 		canvas.height = size;
 
 		ctx.fillStyle = props.text.color;
+		if (strokedText) {
+			ctx.strokeStyle = props.text.strokeColor;
+			ctx.lineWidth = props.strokeWidth;
+		}
 		ctx.textAlign = 'center';
 		ctx.font = `bold ${10 * props.scale}px ${props.text.font}`;
 
@@ -75,9 +83,11 @@ const renderGIF = (props: Config) =>
 				size - 5 * 2 * props.scale
 			);
 
-			topText.forEach((text, index) =>
+			topText.forEach((text, index) => {
+				if (strokedText) 
+					ctx.strokeText(text, size / 2, 10 * props.scale * index + 3 * props.scale);
 				ctx.fillText(text, size / 2, 10 * props.scale * index + 3 * props.scale)
-			);
+			});
 
 			// Bottom line
 			ctx.textBaseline = 'bottom';
@@ -88,9 +98,11 @@ const renderGIF = (props: Config) =>
 				size - 5 * 2 * props.scale
 			).reverse();
 
-			bottomText.forEach((text, index) =>
+			bottomText.forEach((text, index) => {
+				if (strokedText) 
+					ctx.strokeText(text, size / 2, size - 10 * props.scale * index - 3 * props.scale)
 				ctx.fillText(text, size / 2, size - 10 * props.scale * index - 3 * props.scale)
-			);
+			});
 
 			// Add frame to gif
 			encoder.addFrame(ctx);

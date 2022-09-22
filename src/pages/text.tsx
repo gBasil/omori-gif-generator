@@ -29,10 +29,16 @@ const TextPage: NextPage = () => {
 		bindings: colorBindings,
 		setState: setColor,
 	} = useInput('#ffffff');
+	const {
+		state: strokeColor,
+		bindings: strokeColorBindings,
+		setState: setStrokeColor
+	} = useInput('#ffffff');
 
 	const [rendering, setRendering] = useState(false);
 	const [output, setOutput] = useState<Buffer>();
 	const [scale, setScale] = useState(1);
+	const [strokeWidth, setStrokeWidth] = useState(0);
 	const [font, setFont] = useState('Arial');
 
 	// Params
@@ -76,6 +82,7 @@ const TextPage: NextPage = () => {
 					color,
 				},
 				scale,
+				strokeWidth
 			})
 		);
 
@@ -159,6 +166,24 @@ const TextPage: NextPage = () => {
 						value={color}
 						bindings={colorBindings}
 						onChange={setColor}
+					/>
+				</Grid>
+				<Grid xs={12} direction='column'>
+					<Label>Stroke Color</Label>
+					<ColorPicker
+						value={strokeColor}
+						bindings={strokeColorBindings}
+						onChange={setStrokeColor}
+					/>
+				</Grid>
+				<Grid xs={12} direction='column'>
+					<Label>Stroke Width (0 = No Stroke)</Label>
+					<Slider
+						max={10}
+						value={strokeWidth}
+						min={0}
+						step={1}
+						onChange={setStrokeWidth}
 					/>
 				</Grid>
 				<Grid xs={12} direction='column'></Grid>

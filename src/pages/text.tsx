@@ -39,7 +39,7 @@ const TextPage: NextPage = () => {
 	const [output, setOutput] = useState<Buffer>();
 	const [scale, setScale] = useState(1);
 	const [strokeWidth, setStrokeWidth] = useState(0);
-	const [font, setFont] = useState('Arial');
+	const [font, setFont] = useState('Omori');
 
 	// Params
 	const character = router.query.character as string;
@@ -134,6 +134,12 @@ const TextPage: NextPage = () => {
 						initialValue={font}
 						onChange={(val) => setFont(val as string)}
 					>
+						<Select.Option
+							value='Omori'
+							style={{ fontFamily: 'Omori' }}
+						>
+							Omori
+						</Select.Option>
 						<Select.Option
 							value='Impact'
 							style={{ fontFamily: 'Impact' }}

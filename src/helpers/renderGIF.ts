@@ -52,6 +52,7 @@ const renderGIF = (props: Config) =>
 			ctx.lineWidth = props.strokeWidth;
 		}
 		ctx.textAlign = 'center';
+
 		ctx.font = `bold ${10 * props.scale}px ${props.text.font}`;
 
 		// Render all three frames

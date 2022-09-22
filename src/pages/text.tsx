@@ -40,6 +40,7 @@ const TextPage: NextPage = () => {
 	const [scale, setScale] = useState(1);
 	const [strokeWidth, setStrokeWidth] = useState(0);
 	const [font, setFont] = useState('Omori');
+	const [fontScale, setFontScale] = useState(1);
 
 	// Params
 	const character = router.query.character as string;
@@ -79,7 +80,9 @@ const TextPage: NextPage = () => {
 					top: topText,
 					bottom: bottomText,
 					font,
+					fontScale,
 					color,
+					strokeColor
 				},
 				scale,
 				strokeWidth
@@ -190,6 +193,16 @@ const TextPage: NextPage = () => {
 						min={0}
 						step={1}
 						onChange={setStrokeWidth}
+					/>
+				</Grid>
+				<Grid xs={12} direction='column'>
+					<Label>Font Scale</Label>
+					<Slider
+						max={4}
+						value={fontScale}
+						min={0.5}
+						step={0.5}
+						onChange={setFontScale}
 					/>
 				</Grid>
 				<Grid xs={12} direction='column'></Grid>

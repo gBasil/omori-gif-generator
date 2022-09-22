@@ -9,6 +9,7 @@ type Config = {
 		top: string;
 		bottom: string;
 		font: string;
+		fontScale: number;
 		color: string;
 		strokeColor: string;
 	};
@@ -53,7 +54,7 @@ const renderGIF = (props: Config) =>
 		}
 		ctx.textAlign = 'center';
 
-		ctx.font = `bold ${10 * props.scale}px ${props.text.font}`;
+		ctx.font = `bold ${10 * props.scale * props.text.fontScale}px ${props.text.font}`;
 
 		// Render all three frames
 		for (let i = 0; i < 3; i++) {

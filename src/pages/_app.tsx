@@ -13,9 +13,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 					async
 					defer
 					data-website-id='75086b50-13e1-4379-b5de-19a70d577cde'
-					src='https://speedcore.gbasil.dev/umami.js'
+					src='https://umami.basil.cafe/umami.js'
 					data-do-not-track='true'
-					data-domains='omori.gbasil.dev'
+					data-domains='omori.basil.cafe'
 				/>
 			</Head>
 			<Meta />

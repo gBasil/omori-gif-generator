@@ -35,13 +35,13 @@ const TextPage: NextPage = () => {
 		state: strokeColor,
 		bindings: strokeColorBindings,
 		setState: setStrokeColor,
-	} = useInput('#ffffff');
+	} = useInput('#000000');
 
 	const [rendering, setRendering] = useState(false);
 	const [output, setOutput] = useState<Buffer>();
-	const [scale, setScale] = useState(1);
+	const [scale, setScale] = useState(3);
 	const [strokeWidth, setStrokeWidth] = useState(0);
-	const [font, setFont] = useState('Omori');
+	const [font, setFont] = useState('Impact');
 	const [fontScale, setFontScale] = useState(1);
 
 	// Params
@@ -72,25 +72,24 @@ const TextPage: NextPage = () => {
 				config.characters.find((char) => char.key === character)!.emotionKey
 			].indexOf(emotion);
 
-		setOutput(
-			await renderGIF({
-				background,
-				character,
-				emotionIndex,
-				text: {
-					top: topText,
-					bottom: bottomText,
-					font,
-					fontScale,
-					color,
-					strokeColor,
-				},
-				scale,
-				strokeWidth,
-			})
-		);
-
-		setRendering(false);
+		renderGIF({
+			background,
+			character,
+			emotionIndex,
+			text: {
+				top: topText,
+				bottom: bottomText,
+				font,
+				fontScale,
+				color,
+				strokeColor,
+			},
+			scale,
+			strokeWidth,
+		}).then(buffer => {
+			setOutput(buffer);
+			setRendering(false);
+		});
 	};
 
 	return (
@@ -138,11 +137,11 @@ const TextPage: NextPage = () => {
 						initialValue={font}
 						onChange={(val) => setFont(val as string)}
 					>
-						<Select.Option value='Omori' style={{ fontFamily: 'Omori' }}>
-							Omori
-						</Select.Option>
 						<Select.Option value='Impact' style={{ fontFamily: 'Impact' }}>
 							Impact
+						</Select.Option>
+						<Select.Option value='Omori' style={{ fontFamily: 'Omori' }}>
+							Omori
 						</Select.Option>
 						<Select.Option value='Arial' style={{ fontFamily: 'Arial' }}>
 							Arial

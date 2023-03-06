@@ -17,11 +17,11 @@ type Config = {
 	strokeWidth: number;
 };
 
-const renderGIF = (props: Config) =>
+const renderGIF = async (props: Config) =>
 	new Promise<Buffer>(async (resolve, reject) => {
 		const size = 100 * props.scale;
 
-		let strokedText =	props.strokeWidth > 0; 
+		let strokedText = props.strokeWidth > 0; 
 
 		// Images
 		const backgroundImage = new Image();
@@ -50,7 +50,7 @@ const renderGIF = (props: Config) =>
 		ctx.fillStyle = props.text.color;
 		if (strokedText) {
 			ctx.strokeStyle = props.text.strokeColor;
-			ctx.lineWidth = props.strokeWidth;
+			ctx.lineWidth = props.strokeWidth * props.scale;
 		}
 		ctx.textAlign = 'center';
 

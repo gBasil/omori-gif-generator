@@ -12,6 +12,12 @@ const Home: NextPage = () => (
 			<Text h1>Changelog</Text>
 		</Display>
 
+		<Text h3>v1.3.1</Text>
+		<Text small>March 6, 2023</Text>
+		<ul>
+			<li>🚸 Improved the text defaults</li>
+		</ul>
+
 		<Text h3>v1.3.0</Text>
 		<Text small>September 22, 2022</Text>
 		<Text>Thank you <Link color href='https://github.com/morrig-n'>morrig-n</Link> for the pull request! :D</Text>
